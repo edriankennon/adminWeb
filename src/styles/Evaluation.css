@@ -1,0 +1,327 @@
+/* Main Container */
+.for-approval-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column; /* Stack content vertically by default */
+  gap: 20px; /* Add spacing between elements */
+  overflow-x: auto;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 10px; /* Space between items when wrapped */
+}
+
+.for-approval-container .header-stats {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  margin-left: auto;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.for-approval-container .total-entries {
+  font-size: 23px; /* Increased font size */
+  font-weight: bold; /* Make it bold */
+  color: black;
+}
+
+.for-approval-container .status-count {
+  display: flex; /* Align items horizontally */
+  flex-direction: row; /* Ensure they are side-by-side */
+  justify-content: flex-end; /* Align to the right */
+  align-items: center; /* Vertically center the items */
+  gap: 10px; /* Add spacing between Active and Pending */
+  text-align: right; /* Align text within each item to the right */
+}
+
+.for-approval-container .done-count {
+  color: green;
+  font-weight: bold;
+}
+
+.for-approval-container .in-progress-count {
+  color: red;
+  font-weight: bold;
+}
+
+/* Toolbar Section */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 10px; /* Space between items when wrapped */
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  width: 80%; /* Allow the container to stretch */
+}
+
+.search-input {
+  width: 100%; /* Make the search input stretch across the available space */
+  max-width: 500px; /* Set a larger maximum width */
+  padding: 12px; /* Increase padding for better usability */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border 0.3s ease;
+}
+
+.search-input:focus {
+  border: 1px solid #41B06E;
+  outline: none;
+}
+
+
+.filters-button {
+  background-color: #ddd;
+  border: none;
+  padding: 10px 15px; /* Match the padding of the delete button */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto; /* Ensure it adjusts to its content */
+  max-width: 80px; /* Optional: Set a maximum width for consistency */
+  text-align: center; /* Center-align the text */
+}
+
+.filters-button:hover {
+  background-color: #bbb;
+}
+
+
+/* Actions Section */
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* Allow buttons to wrap */
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.approve-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.approve-button:hover {
+  background-color: #45a049;
+}
+
+.approve-button:disabled {
+  background-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.delete-button:disabled {
+  background-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.approval-table {
+  width: 100%; /* Ensures table takes the full width of its container */
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  text-align: center;
+  overflow-x: auto; /* Enables horizontal scrolling on smaller screens */
+  display: table; /* Restores normal table display */
+  white-space: normal; /* Allows text to wrap instead of forcing a wide table */
+}
+
+.approval-table th,
+.approval-table td {
+  padding: 10px; /* Adjust padding for better spacing */
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: middle;
+  word-wrap: break-word; /* Break long words if necessary */
+}
+
+.approval-table th {
+  background-color: #f8f8f8;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.approval-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.approval-table tr.selected-row {
+  background-color: #e1f5fe; /* Highlight selected rows */
+}
+
+/* Responsive Table Styling */
+@media (max-width: 768px) {
+  .approval-table {
+    display: block; /* Make the table scrollable */
+    overflow-x: auto; /* Add horizontal scroll if needed */
+    font-size: 14px;
+  }
+
+  .approval-table th,
+  .approval-table td {  
+    padding: 10px; /* Reduce padding for smaller screens */
+    font-size: 12px; /* Adjust font size for readability */
+  }
+}
+
+@media (max-width: 480px) {
+  .approval-table th,
+  .approval-table td {
+    padding: 8px; /* Further reduce padding for very small screens */
+    font-size: 10px; /* Smaller font for very narrow screens */
+  }
+
+  .approval-table {
+    font-size: 12px; /* Adjust overall table font size */
+  }
+}
+
+
+/* Status Badge General Styles */
+.status {
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  padding: 5px 10px;
+  display: inline-block;
+  text-align: center;
+  text-transform: capitalize; /* Capitalize first letter of each word */
+}
+
+/* Active Status */
+.status.active {
+  background-color: green; /* Green background for Active */
+  color: white; /* White text */
+}
+
+/* Pending Status */
+.status.pending {
+  background-color: red; /* Orange background for Pending */
+  color: white; /* White text */
+}
+
+/* Optional Hover Effects */
+.status.active:hover {
+  background-color: #45a049; /* Lighter green for hover */
+}
+
+.status.pending:hover {
+  background-color: #ff9900; /* Lighter orange for hover */
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.page-button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.page-button.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.page-button:hover:not(.active) {
+  background-color: #e0e0e0;
+}
+
+.page-button:disabled {
+  background-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .header,
+  .toolbar {
+    flex-direction: column; /* Stack content vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .header-stats {
+    text-align: left; /* Align text to the left */
+    margin-left: 0; /* Remove auto margin */
+  }
+
+  .status-count {
+    justify-content: flex-start; /* Align counts to the left */
+  }
+
+  .search-container {
+    flex-direction: column; /* Stack search and filter button */
+    width: 90%; /* Full width for smaller screens */
+  }
+
+  .actions {
+    justify-content: flex-start; /* Align actions to the left */
+  }
+}
+
+@media (max-width: 480px) {
+  .approve-button,
+  .delete-button {
+    padding: 8px 10px; /* Adjust button padding */
+    font-size: 12px; /* Reduce font size for smaller screens */
+  }
+
+  .search-input {
+    max-width: 100%; /* Allow the search input to take full width */
+  }
+
+  .approval-table th,
+  .approval-table td {
+    font-size: 12px; /* Smaller font size for table content */
+  }
+}

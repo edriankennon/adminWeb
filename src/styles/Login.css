@@ -1,0 +1,162 @@
+/* Main Container */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #008000; /* Green Background */
+  padding: 20px;
+  font-family: 'Arial', sans-serif; /* Match font with Explore Damilag */
+}
+
+/* Login Box Styling */
+.login-box {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px; /* Adjust for centered form */
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Form Section */
+.form-section {
+  width: 100%; /* Take full width */
+  padding: 0; /* Remove extra padding */
+}
+
+.image-logo {
+  max-width: 150px; /* Ensure the logo scales properly */
+  height: auto; /* Maintains aspect ratio */
+}
+
+/* Typography */
+h2 {
+  font-size: 35px;
+  margin-bottom: 15px;
+  color: black;
+  font-family: 'Arial', sans-serif; /* Match font with Explore Damilag */
+  font-weight: bold; /* Match font weight */
+}
+
+p {
+  font-size: 14px;
+  color: black;
+  margin-bottom: 15px;
+  font-family: 'Arial', sans-serif; /* Match font with Explore Damilag */
+}
+
+/* Input Fields */
+.input-field {
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif; /* Match font */
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 12px;
+  color: #666;
+  font-family: 'Arial', sans-serif; /* Match font */
+}
+
+/* Options Container */
+.options-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: black;
+  font-family: 'Arial', sans-serif; /* Match font */
+}
+
+.forgot-password {
+  color: #008000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif; /* Match font */
+}
+
+/* Sign-In Button */
+.sign-in-button {
+  background-color: #41B06E;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif; /* Match font */
+  transition: background-color 0.3s ease;
+}
+
+.sign-in-button:hover {
+  background-color: #45a049;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Arial', sans-serif; /* Match font */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .login-box {
+    max-width: 100%; /* Ensure full width on smaller screens */
+  }
+
+  h2 {
+    font-size: 24px; /* Reduce size for smaller screens */
+  }
+
+  .sign-in-button {
+    padding: 10px;
+    font-size: 14px; /* Adjust font size for smaller buttons */
+  }
+}
+
+/* Fine-Tuning for Very Small Screens */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 20px; /* Further reduce size */
+  }
+
+  .input-field {
+    padding: 10px;
+    font-size: 12px; /* Make input fields smaller */
+  }
+
+  .sign-in-button {
+    padding: 8px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,303 @@
+/* Adjusted user-manager container for wider layout */
+.user-manager {
+  background-color: whitesmoke;
+  color: whitesmoke;
+  max-width:none; /* Wider container */
+  margin: 20px auto; /* Center container */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden; /* Prevent content overflow */
+}
+
+/* Header section */
+.header {
+  display: flex;
+  flex-direction: column; /* Stack the heading and subheading vertically */
+  justify-content: center;
+  align-items: flex-start; /* Align text to the left */
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 28px; /* Larger font for heading */
+  margin: 0;
+  font-weight: bold;
+  color: black;
+}
+
+.header p {
+  font-size: 16px; /* Smaller font for subheading */
+  color: rgba(17, 15, 15, 0.8); /* Light text color for better contrast */
+  margin: 5px 0 0 0; /* Add a small gap below the heading */
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Grid for user cards */
+.user-grid {
+  display: flex; /* Use flex for dynamic wrapping */
+  flex-wrap: wrap; /* Ensure items wrap to the next line */
+  gap: 15px; /* Space between grid items */
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+/* User card styling */
+.user-card {
+  background-color: #41B06E;
+  color: black;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  width: 150px; /* Wider cards */
+  height: 180px; /* Consistent height */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.user-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-card.selected {
+  border: 3px solid #d0d004;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.user-info .name {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+}
+
+.user-info .email {
+  font-size: 12px;
+  color: whitesmoke;
+}
+
+.checkmark {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  color: white;
+}
+
+/* Remove button styling */
+.remove-button {
+  background-color: #ff4136; /* Red background for a clear delete action */
+  color: white; /* White text for contrast */
+  border: none; /* Remove default button borders */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 12px; /* Add padding for better appearance */
+  font-size: 12px; /* Slightly smaller font size */
+  cursor: pointer; /* Change cursor to pointer for better UX */
+  margin-top: 10px; /* Add space between the button and the card content */
+  transition: background-color 0.2s ease; /* Smooth hover transition */
+}
+
+.remove-button:hover {
+  background-color: #ff4136; /* Darker red on hover for feedback */
+}
+
+/* Add account button styling */
+.add-account {
+  background-color: whitesmoke;
+  color: #41B06E;
+  border: 2px dashed black;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  width: 150px; /* Match user card width */
+  height: 180px; /* Match user card height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Footer alignment */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.footer button {
+  background-color: white;
+  color: #ff7058;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.footer button.logout {
+  background-color: #ff4136;
+  color: white;
+}
+
+.footer button.continue {
+  background-color: #41B06E;
+  color: whitesmoke;
+}
+
+.accounts-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #f9fafb;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.user-info {
+  text-align: center;
+}
+
+.label {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.email {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: 'black';
+}
+
+.card-footer {
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-outline {
+  background-color: white;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+
+.btn-outline:hover {
+  background-color: #f9fafb;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  border: 1px solid #2563eb;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 900px) {
+  .user-manager {
+      max-width: 600px; /* Adjust for smaller screens */
+  }
+
+  .user-grid {
+      grid-template-columns: none; /* Let flex-wrap handle layout */
+  }
+}
+
+@media (max-width: 600px) {
+  .user-manager {
+      max-width: 400px;
+  }
+
+  .user-grid {
+      grid-template-columns: none; /* Let flex-wrap handle layout */
+      gap: 10px;
+  }
+
+  .user-card,
+  .add-account {
+      width: 120px;
+      height: 150px;
+  }
+
+  .footer button {
+      font-size: 12px;
+      padding: 8px 15px;
+  }
+}

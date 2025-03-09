@@ -1,0 +1,109 @@
+/* Header Stats Section */
+.header-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Ensure all cards are equal width */
+  gap: 20px; /* Add consistent spacing between cards */
+  margin-bottom: 30px;
+}
+
+/* Shared Card Styles */
+.stat-card {
+  text-align: center;
+  padding: 30px; /* Consistent padding for all cards */
+  border-radius: 10px; /* Rounded corners for all cards */
+  position: relative;
+  color: #fff; /* White text for all cards */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for all cards */
+  flex-grow: 1; /* Ensure all cards expand proportionally */
+}
+
+.stat-card p {
+  font-size: 32px; /* Large font for the main number */
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.stat-card span {
+  font-size: 16px; /* Slightly smaller font for the label */
+  margin: 5px 0;
+  display: block;
+}
+
+.stat-card .growth {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 14px; /* Consistent growth font size */
+  background: #fff;
+  color: #000;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Specific Colors for Cards */
+.stat-card.blue {
+  background-color: #D5F0FD; /* Light blue for "Redirects" */
+  color: #000;
+}
+
+.stat-card.green {
+  background-color: #E6F9E6; /* Light green for "Success rate" */
+  color: #000;
+}
+
+.stat-card.orange {
+  background-color: #FEE1D6; /* Light orange for "Errors" */
+  color: #000;
+}
+
+.stat-card.black {
+  background-color: #D5F0FD; /* Match the "Redirects" card background */
+  color: #000; /* Match the "Redirects" card text color */
+}
+
+/* Chart Section Layout */
+.chart-section {
+  display: grid; /* Use grid for precise placement */
+  grid-template-columns: 2fr 1fr; /* Allocate 2:1 ratio for line chart and doughnut chart */
+  gap: 20px; /* Maintain consistent spacing between the charts */
+  align-items: start; /* Align the top of the charts */
+  margin-top: 20px; /* Add some space above the charts */
+}
+
+/* Line Chart Styling */
+.line-chart {
+  background: #fff; /* Optional: Add a background for consistency */
+  padding: 20px; /* Add padding for better spacing within the container */
+  border-radius: 8px; /* Rounded corners for a neat look */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visuals */
+}
+
+/* Doughnut Chart Styling */
+.analytics-container-doughnut-chart {
+  background: #fff; /* Optional: Add a background for consistency */
+  padding: 20px; /* Add padding for better spacing within the container */
+  border-radius: 8px; /* Rounded corners for a neat look */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visuals */
+  text-align: center; /* Center-align the content */
+}
+
+.analytics-doughnut-chart h2 {
+  font-size: 25px; /* Title font size */
+  margin-bottom: 10px; /* Add spacing below the title */
+}
+
+.analytics-container-doughnut-chart canvas {
+  max-width: 100%; /* Ensure the chart resizes properly within the container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .chart-section {
+    grid-template-columns: 1fr; /* Stack charts vertically for smaller screens */
+  }
+  .line-chart, .doughnut-chart {
+    max-width: 100%; /* Ensure they expand to full width on smaller screens */
+  }
+}

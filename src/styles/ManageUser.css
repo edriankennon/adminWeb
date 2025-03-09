@@ -1,0 +1,302 @@
+/* Main Container */
+.manage-users-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column; /* Stack content vertically by default */
+  gap: 20px; /* Add spacing between elements */
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between; /* Space out elements in the header */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-count {
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+  margin-left: auto; /* Ensures the count stays on the far right */
+  text-align: right; /* Aligns text to the right */
+
+}
+
+.header h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filters-button {
+  padding: 10px 15px;
+  background: #ddd;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filters-button:hover {
+  background: #bbb;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-user-button {
+  background: #f44336;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-user-button:disabled {
+  background: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* User Table */
+.user-table {
+  width: 100%; /* Ensure it takes up the full width of its container */
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+}
+
+.user-table th,
+.user-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.user-table th {
+  background: #f8f8f8;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.user-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Align table with the container */
+.manage-users-container .user-table {
+  margin-left: auto;
+  margin-right: auto; /* Center align the table */
+}
+
+.manage-users-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.user-count {
+  background-color: #e9ecef;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  min-width: 250px;
+}
+
+.delete-user-button {
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-user-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.user-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.status.verified {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.unverified {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.pagination button:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.select-all-label {
+  margin-left: 8px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .manage-users-container {
+    padding: 10px;
+  }
+
+  .user-table {
+    font-size: 14px; /* Reduce font size for better fit */
+  }
+
+  .user-table th,
+  .user-table td {
+    padding: 8px; /* Reduce padding to fit smaller screens */
+  }
+}
+.status.active {
+  background: green;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.status.inactive {
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.page-button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f8f8f8;
+  cursor: pointer;
+}
+
+.page-button.active {
+  background: #41B06E;
+  color: white;
+}
+
+.page-button:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
