@@ -32,7 +32,7 @@ const Login = () => {
         try {
             await signIn(email, password);
             setErrorMessage('');
-            navigate('/manage-users');
+            navigate('/home');
         } catch (error) {
             console.error('Sign in error:', error);
             setErrorMessage('Invalid email or password. Please try again.');

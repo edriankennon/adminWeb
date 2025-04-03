@@ -3,7 +3,7 @@ import '../styles/Home.css';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { db } from "../firebase/config";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -19,12 +19,17 @@ const Home = () => {
     lastUpdate: '',
   });
 
+  const [totalUsers, setTotalUsers] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [totalBusiness, setTotalBusiness] = useState(0);
+  const [totalTourist, setTotalTourist] = useState(0);
+  const [totalResidents, setTotalResidents] = useState(0);
 
   useEffect(() => {
+    /**
     const fetchData = async () => {
       try {
-        const userDoc = doc(db, "homeData", "counts"); // Correct collection and document
+        const userDoc = doc(db, "users"); // Correct collection and document
         const snapshot = await getDoc(userDoc);
 
         if (snapshot.exists()) {
@@ -54,18 +59,59 @@ const Home = () => {
 
     fetchData();
     console.log(userCounts);
+     */
+
+    const fetchData = async () => {
+      try {
+        let businessCount = 0;
+        let touristCount = 0;
+        let residentCount = 0;
+        const userDoc = collection(db,"users");
+        const snapshot = await getDocs(userDoc);
+
+        const users = snapshot.docs.map(doc => {
+          const data = doc.data();
+          
+            if (data.role === "Business Owner") {
+              businessCount++;
+            }
+            
+            if (data.role == "Visitor") {
+              touristCount++;
+            }
+            
+            if (data.role == "Resident") {
+              residentCount++;
+            }
+
+            console.log(data.createdAt);
+        });
+
+        setTotalTourist(touristCount);
+        setTotalBusiness(businessCount);
+        setTotalResidents(residentCount);
+        setTotalUsers(businessCount + touristCount + residentCount);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setIsLoading(false);
+        
+      }
+    }
+    fetchData();
   }, []);
 
   const doughnutData = {
     labels: ['Tourist', 'Business Owners', 'Local Residents'],
     datasets: [
       {
-        data: [userCounts.tourist, userCounts.business, userCounts.residents],
-        backgroundColor: ['#F5A623', '#9B9B9B', '#4A90E2'],
+        data: [totalTourist, totalBusiness, totalResidents], 
+        backgroundColor: ['#4CAF50', '#FFEB3B',],
         hoverOffset: 4,
       },
     ],
   };
+  
 
   const doughnutOptions = {
     responsive: true,
@@ -92,26 +138,28 @@ const Home = () => {
                   <Doughnut data={doughnutData} options={doughnutOptions} />
                 </div>
                 <p className="total-count">Total Users</p>
-                <p className="user-count">{userCounts.totalUsers}</p>
+                <p className="user-count">{totalUsers}</p>
                 <p className="last-update">Last update: {userCounts.lastUpdate}</p>
               </div>
               <div className="vertical-divider"></div>
               <div className="chart-right">
                 <div className="legend-item">
-                  <span className="legend-color" style={{ backgroundColor: '#F5A623' }}></span>
-                  <span className="legend-label">{userCounts.tourist} Tourist</span>
+                  <span className="legend-color" style={{ backgroundColor: '#4CAF50' }}></span>
+                  <span className="legend-label">{totalTourist} Visitors</span>
                 </div>
                 <div className="legend-item">
-                  <span className="legend-color" style={{ backgroundColor: '#9B9B9B' }}></span>
-                  <span className="legend-label">{userCounts.business} Business Owners</span>
+                  <span className="legend-color" style={{ backgroundColor: '#FFEB3B' }}></span>
+                  <span className="legend-label">{totalBusiness} Business Owners</span>
                 </div>
                 <div className="legend-item">
-                  <span className="legend-color" style={{ backgroundColor: '#4A90E2' }}></span>
-                  <span className="legend-label">{userCounts.residents} Local Residents</span>
+                 {/*} <span className="legend-color" style={{ backgroundColor: '#4A90E2' }}></span>
+                  <span className="legend-label">{totalResidents} Local Residents</span> */}
                 </div>
               </div>
             </div>
           </div>
+          {
+            /**
           <div className="summary-cards">
             <div className="card new-users">
               <div className="card-icon">🆕</div>
@@ -129,6 +177,8 @@ const Home = () => {
               <p className="card-number">{userCounts.newBusiness}</p>
             </div>
           </div>
+           */
+          }
         </>
       )}
     </div>

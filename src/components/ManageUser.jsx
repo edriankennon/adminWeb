@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/ManageUser.css';
-import { auth } from '../firebase/config';
-import { 
-  getAuth, 
-  deleteUser,
-  fetchSignInMethodsForEmail
-} from 'firebase/auth';
 import { 
   collection, 
   getDocs, 
@@ -28,15 +22,16 @@ const ManageUsers = () => {
         const usersCollection = collection(db, 'users');
         const snapshot = await getDocs(usersCollection);
 
-        const fetchedUsers = snapshot.docs.map(doc => {
-          const data = doc.data();
+        const fetchedUsers = snapshot.docs.map((docSnap) => {
+          const data = docSnap.data();
           return {
-            id: doc.id,
+            id: docSnap.id,
             email: data.email || '',
-            displayName: data.username || '', // Changed from displayName to username
-            role: data.role || 'N/A',        // Added role field
+            displayName: data.username || '',
+            role: data.role || 'N/A',
             lastSignIn: data.lastSignIn || 'Never',
-            createdAt: data.createdAt || new Date().toISOString(),
+            // Remove the fallback to today's date:
+            createdAt: data.createdAt || '',
             emailVerified: data.emailVerified || false,
             isSelected: false,
           };
@@ -55,11 +50,14 @@ const ManageUsers = () => {
   }, []);
 
   useEffect(() => {
-    if (currentPage > Math.ceil(users.length / itemsPerPage)) {
-      setCurrentPage(Math.max(1, Math.ceil(users.length / itemsPerPage)));
+    // Make sure currentPage isn't out of bounds
+    const maxPage = Math.ceil(users.length / itemsPerPage);
+    if (currentPage > maxPage) {
+      setCurrentPage(Math.max(1, maxPage));
     }
   }, [users, itemsPerPage, currentPage]);
 
+  // Filter users based on searchTerm
   const filteredUsers = users.filter((user) => {
     if (!user) return false;
     const searchLower = searchTerm.toLowerCase();
@@ -69,11 +67,13 @@ const ManageUsers = () => {
     );
   });
 
+  // Pagination calculations
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
 
+  // Handlers
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     setCurrentPage(1);
@@ -81,7 +81,10 @@ const ManageUsers = () => {
 
   const handleSelectAll = () => {
     const allSelected = users.every((user) => user.isSelected);
-    const updatedUsers = users.map((user) => ({ ...user, isSelected: !allSelected }));
+    const updatedUsers = users.map((user) => ({
+      ...user,
+      isSelected: !allSelected,
+    }));
     setUsers(updatedUsers);
   };
 
@@ -104,7 +107,7 @@ const ManageUsers = () => {
       text: 'Do you want to delete selected users?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete them!',
+      confirmButtonText: 'Delete',
       cancelButtonText: 'Cancel',
     });
 
@@ -116,7 +119,7 @@ const ManageUsers = () => {
         await deleteDoc(userRef);
       }
       setUsers(users.filter((user) => !user.isSelected));
-      Swal.fire('Deleted!', 'Selected users have been deleted from the database.', 'success');
+      Swal.fire('Deleted!', 'Selected users have been deleted.', 'success');
     } catch (error) {
       console.error('Error deleting users:', error);
       Swal.fire('Error', 'Failed to delete some users. Try again later.', 'error');
@@ -127,9 +130,6 @@ const ManageUsers = () => {
     <div className="manage-users-container">
       <header className="header">
         <h2>Manage Users</h2>
-        <div className="user-count">
-          Total Users: <span>{users.length}</span>
-        </div>
       </header>
 
       <div className="toolbar">
@@ -149,7 +149,7 @@ const ManageUsers = () => {
             onClick={handleDeleteSelected}
             disabled={users.every((user) => !user.isSelected)}
           >
-            Delete Selected
+            Delete
           </button>
         </div>
       </div>
@@ -173,7 +173,7 @@ const ManageUsers = () => {
                   </label>
                 </th>
                 <th>Name</th>
-                <th>Role</th> {/* Added Role column */}
+                <th>Role</th>
                 <th>Created</th>
               </tr>
             </thead>
@@ -188,8 +188,12 @@ const ManageUsers = () => {
                     />
                   </td>
                   <td>{user.displayName || 'N/A'}</td>
-                  <td>{user.role || 'N/A'}</td> {/* Added Role cell */}
-                  <td>{new Date(user.createdAt).toLocaleString()}</td>
+                  <td>{user.role || 'N/A'}</td>
+                  <td>
+                    {user.createdAt
+                      ? new Date(user.createdAt).toLocaleString()
+                      : 'No creation date'}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -225,4 +229,4 @@ const ManageUsers = () => {
 };
 
 export default ManageUsers;
-
+ 
